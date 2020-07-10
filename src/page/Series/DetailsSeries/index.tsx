@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useRoute } from '@react-navigation/native';
 import api from '~/services/api';
+
+import Loading from '~/components/Loading';
 import {
   Container,
   ImageBackdrop,
@@ -31,16 +33,23 @@ const DetailsSeries: React.FC = () => {
   const route = useRoute();
   const { id } = route.params as RouteParams;
   const [movie, setMovie] = useState<IDetailsMovie>();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     api
       .get<IDetailsMovie>(
         `/tv/${id}?api_key=9c8e34c8a854e5aed01144d9bc41211d&language=pt-BR`,
       )
       .then((response) => {
         setMovie(response.data);
+        setLoading(false);
       });
   }, [id]);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <Container>

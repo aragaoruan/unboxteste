@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { View } from 'react-native';
 import OpenDrawer from '~/components/OpenDrawer';
+import Goback from '~/components/Goback';
 
 import Movies from '~/page/Movies/Movies';
 import Trending from '~/page/Movies/Trending';
@@ -22,6 +23,18 @@ const Tab = createBottomTabNavigator();
 const Tabs: React.FC = () => {
   return (
     <Tab.Navigator>
+      <Tab.Screen
+        name="Trending"
+        component={Trending}
+        options={{
+          title: 'Trending',
+          tabBarIcon: ({ color }) => (
+            <View>
+              <Icon name="trending-up" size={20} color={color} />
+            </View>
+          ),
+        }}
+      />
       <Tab.Screen
         name="SearchMovie"
         component={SearchMovie}
@@ -46,18 +59,6 @@ const Tabs: React.FC = () => {
           ),
         }}
       />
-      <Tab.Screen
-        name="Trending"
-        component={Trending}
-        options={{
-          title: 'Trending',
-          tabBarIcon: ({ color }) => (
-            <View>
-              <Icon name="trending-up" size={20} color={color} />
-            </View>
-          ),
-        }}
-      />
     </Tab.Navigator>
   );
 };
@@ -69,11 +70,16 @@ const stack: React.FC = () => {
         headerStyle: {
           backgroundColor: '#fff',
         },
-        headerLeft: () => <OpenDrawer />,
         headerTitle: 'Filmes',
       }}
     >
-      <Stack.Screen name="Tabs" component={Tabs} />
+      <Stack.Screen
+        name="Tabs"
+        options={{
+          headerLeft: () => <OpenDrawer />,
+        }}
+        component={Tabs}
+      />
       <Stack.Screen
         name="DetailsMovie"
         component={DetailsMovies}
@@ -81,6 +87,7 @@ const stack: React.FC = () => {
           const { title } = route.params as Props;
           return {
             headerTitle: title || '',
+            headerLeft: () => <Goback />,
           };
         }}
       />

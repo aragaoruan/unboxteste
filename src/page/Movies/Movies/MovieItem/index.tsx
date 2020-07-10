@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import api from '~/services/api';
 
+import Loading from '~/components/Loading';
+
 import {
   Container,
   ContainerDescription,
@@ -13,16 +15,24 @@ import { Props, IMovies, ResponseMovies } from './intefaces';
 
 const MovieItem: React.FC<Props> = ({ id, handle }) => {
   const [movies, setMovies] = useState<IMovies[]>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     api
       .get<ResponseMovies>(
         `discover/movie?with_genres=${id}&api_key=dcabe3d98146057d837088eb8533a2cb&language=pt-BR`,
       )
       .then((response) => {
         setMovies(response.data.results);
+        setLoading(false);
       });
   }, [id]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <HorizontalList>
       {movies.map((movie) => (

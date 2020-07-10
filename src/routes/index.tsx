@@ -8,7 +8,7 @@ const Drawer = createDrawerNavigator();
 
 const Navigator: React.FC = () => {
   return (
-    <Drawer.Navigator initialRouteName="Series" drawerType="slide">
+    <Drawer.Navigator drawerType="slide">
       <Drawer.Screen
         name="Movies"
         options={{ title: 'Filmes' }}

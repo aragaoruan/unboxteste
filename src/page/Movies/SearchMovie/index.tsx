@@ -4,6 +4,7 @@ import { ScrollView, Alert, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import api from '~/services/api';
 
+import Loading from '~/components/Loading';
 import {
   Container,
   Form,
@@ -23,6 +24,7 @@ const SearchMovie: React.FC = () => {
   const { navigate } = useNavigation();
   const [search, setSearch] = useState('');
   const [movies, setMovies] = useState<ISearch[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = useCallback(() => {
     Keyboard.dismiss();
@@ -32,12 +34,14 @@ const SearchMovie: React.FC = () => {
       setSearch('');
       return;
     }
+    setLoading(true);
     api
       .get<IResponseSearch>(
         `search/movie?query=${search}&include_adult=false&page=1&language=pt-BR&api_key=9c8e34c8a854e5aed01144d9bc41211d`,
       )
       .then((response) => {
         setMovies(response.data.results);
+        setLoading(false);
       });
   }, [search]);
 
@@ -47,6 +51,10 @@ const SearchMovie: React.FC = () => {
     },
     [navigate],
   );
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <Container>
