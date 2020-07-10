@@ -6,11 +6,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { View } from 'react-native';
 import OpenDrawer from '~/components/OpenDrawer';
 
-import Movies from '~/page/Movies/Movies';
-import Trending from '~/page/Movies/Trending';
-import SearchMovie from '~/page/Movies/SearchMovie';
+import Series from '~/page/Series/Series';
+import Trending from '~/page/Series/Trending';
+// import SearchMovie from '~/page/Movies/SearchMovie';
 
-import DetailsMovies from '~/page/Movies/DetailsMovies';
+// import DetailsMovies from '~/page/Movies/DetailsMovies';
 
 interface Props {
   title?: string;
@@ -22,7 +22,7 @@ const Tab = createBottomTabNavigator();
 const Tabs: React.FC = () => {
   return (
     <Tab.Navigator>
-      <Tab.Screen
+      {/* <Tab.Screen
         name="SearchMovie"
         component={SearchMovie}
         options={{
@@ -33,10 +33,10 @@ const Tabs: React.FC = () => {
             </View>
           ),
         }}
-      />
-      <Tab.Screen
-        name="Movies"
-        component={Movies}
+      /> */}
+      {/* <Tab.Screen
+        name="Series"
+        component={Series}
         options={{
           title: 'Filmes',
           tabBarIcon: ({ color }) => (
@@ -45,7 +45,7 @@ const Tabs: React.FC = () => {
             </View>
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Trending"
         component={Trending}
@@ -74,7 +74,7 @@ const stack: React.FC = () => {
       }}
     >
       <Stack.Screen name="Tabs" component={Tabs} />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="DetailsMovie"
         component={DetailsMovies}
         options={({ route }) => {
@@ -83,7 +83,7 @@ const stack: React.FC = () => {
             headerTitle: title || '',
           };
         }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 };
