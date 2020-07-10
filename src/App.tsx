@@ -1,8 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
+
+import Movies from '~/page/Movies';
+// import Trending from '~/page/Trending';
 
 const App: React.FC = () => {
-  return <View />;
+  return <Movies />;
 };
 
 export default App;
