@@ -20,7 +20,7 @@ const Trending: React.FC<IResponseTrending> = ({ results, handleDetails }) => {
       {results.map((movie) => (
         <Item
           key={movie?.id}
-          onPress={() => handle(movie?.id, movie?.original_name)}
+          onPress={() => handleDetails(movie?.id, movie?.original_name)}
         >
           <Left>
             <Poster

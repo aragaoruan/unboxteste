@@ -14,7 +14,7 @@ const Series: React.FC = () => {
   useEffect(() => {
     api
       .get<ResponseGenre>(
-        'tv/popular?api_key=9c8e34c8a854e5aed01144d9bc41211d&language=en-US&page=1',
+        'genre/tv/list?api_key=9c8e34c8a854e5aed01144d9bc41211d&language=pt-BR',
       )
       .then((response) => {
         setGenres(response.data.genres);
@@ -23,7 +23,7 @@ const Series: React.FC = () => {
 
   const handleDetails = useCallback(
     (id: number, title: string) => {
-      navigate('DetailsMovie', { id, title });
+      navigate('DetailsSeries', { id, title });
     },
     [navigate],
   );

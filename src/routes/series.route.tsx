@@ -8,9 +8,9 @@ import OpenDrawer from '~/components/OpenDrawer';
 
 import Series from '~/page/Series/Series';
 import Trending from '~/page/Series/Trending';
-// import SearchMovie from '~/page/Movies/SearchMovie';
+import SearchSeries from '~/page/Series/SearchSeries';
 
-// import DetailsMovies from '~/page/Movies/DetailsMovies';
+import DetailsSeries from '~/page/Series/DetailsSeries';
 
 interface Props {
   title?: string;
@@ -22,9 +22,9 @@ const Tab = createBottomTabNavigator();
 const Tabs: React.FC = () => {
   return (
     <Tab.Navigator>
-      {/* <Tab.Screen
-        name="SearchMovie"
-        component={SearchMovie}
+      <Tab.Screen
+        name="SearchSeries"
+        component={SearchSeries}
         options={{
           title: 'Pesquisar',
           tabBarIcon: ({ color }) => (
@@ -33,19 +33,19 @@ const Tabs: React.FC = () => {
             </View>
           ),
         }}
-      /> */}
-      {/* <Tab.Screen
+      />
+      <Tab.Screen
         name="Series"
         component={Series}
         options={{
-          title: 'Filmes',
+          title: 'Series',
           tabBarIcon: ({ color }) => (
             <View>
               <Icon name="local-movies" size={20} color={color} />
             </View>
           ),
         }}
-      /> */}
+      />
       <Tab.Screen
         name="Trending"
         component={Trending}
@@ -74,16 +74,16 @@ const stack: React.FC = () => {
       }}
     >
       <Stack.Screen name="Tabs" component={Tabs} />
-      {/* <Stack.Screen
-        name="DetailsMovie"
-        component={DetailsMovies}
+      <Stack.Screen
+        name="DetailsSeries"
+        component={DetailsSeries}
         options={({ route }) => {
           const { title } = route.params as Props;
           return {
             headerTitle: title || '',
           };
         }}
-      /> */}
+      />
     </Stack.Navigator>
   );
 };

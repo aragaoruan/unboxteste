@@ -17,7 +17,7 @@ const SeriesItem: React.FC<Props> = ({ id, handle }) => {
   useEffect(() => {
     api
       .get<ResponseMovies>(
-        `discover/movie?with_genres=${id}&api_key=dcabe3d98146057d837088eb8533a2cb&language=pt-BR`,
+        `discover/tv?with_genres=${id}&api_key=dcabe3d98146057d837088eb8533a2cb&language=pt-BR`,
       )
       .then((response) => {
         setMovies(response.data.results);
@@ -26,14 +26,17 @@ const SeriesItem: React.FC<Props> = ({ id, handle }) => {
   return (
     <HorizontalList>
       {movies.map((movie) => (
-        <Container key={movie.id} onPress={() => handle(movie.id, movie.title)}>
+        <Container
+          key={movie.id}
+          onPress={() => handle(movie.id, movie.original_name)}
+        >
           <Image
             source={{
               uri: `http://image.tmdb.org/t/p/w185${movie.poster_path}`,
             }}
           />
           <ContainerDescription>
-            <Description>{movie.title}</Description>
+            <Description>{movie.original_name}</Description>
             {/* <Icon name="info" size={12} color="#fff" /> */}
           </ContainerDescription>
         </Container>
