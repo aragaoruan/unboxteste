@@ -11,7 +11,7 @@ import {
 
 import { Props, IMovies, ResponseMovies } from './intefaces';
 
-const MovieItem: React.FC<Props> = ({ id }) => {
+const MovieItem: React.FC<Props> = ({ id, handle }) => {
   const [movies, setMovies] = useState<IMovies[]>([]);
 
   useEffect(() => {
@@ -26,10 +26,7 @@ const MovieItem: React.FC<Props> = ({ id }) => {
   return (
     <HorizontalList>
       {movies.map((movie) => (
-        <Container
-          key={movie.id}
-          // onPress={() => handleDetails({ id: movie.id, title: movie.title })}
-        >
+        <Container key={movie.id} onPress={() => handle(movie.id, movie.title)}>
           <Image
             source={{
               uri: `http://image.tmdb.org/t/p/w185${movie.poster_path}`,

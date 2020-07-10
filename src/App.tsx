@@ -1,10 +1,16 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 
-import Movies from '~/page/DetailsMovies';
-// import Trending from '~/page/Trending';
+import { NavigationContainer } from '@react-navigation/native';
+
+import Routes from './routes';
 
 const App: React.FC = () => {
-  return <Movies />;
+  return (
+    <NavigationContainer>
+      <Routes />
+    </NavigationContainer>
+  );
 };
 
 export default App;

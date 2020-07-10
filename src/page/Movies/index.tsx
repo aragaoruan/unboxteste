@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import api from '~/services/api';
 
 import MovieItem from './MovieItem';
@@ -7,6 +8,7 @@ import { Container, View, GenreLabel } from './styles';
 import { Igenre, ResponseGenre } from './intefaces';
 
 const HomeMovies: React.FC = () => {
+  const { navigate } = useNavigation();
   const [genres, setGenres] = useState<Igenre[]>([]);
 
   useEffect(() => {
@@ -19,12 +21,19 @@ const HomeMovies: React.FC = () => {
       });
   }, []);
 
+  const handleDetails = useCallback(
+    (id: number, title: string) => {
+      navigate('DetailsMovie', { id, title });
+    },
+    [navigate],
+  );
+
   return (
     <Container>
       {genres.map((genre) => (
         <View key={genre.id}>
           <GenreLabel>{genre.name}</GenreLabel>
-          <MovieItem id={genre.id} />
+          <MovieItem id={genre.id} handle={handleDetails} />
         </View>
       ))}
     </Container>

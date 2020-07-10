@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useRoute } from '@react-navigation/native';
 import api from '~/services/api';
-
 import {
   Container,
   ImageBackdrop,
@@ -19,20 +19,23 @@ import {
   ImageCompanies,
 } from './styles';
 
-import { IDetailsMovie } from './interfaces';
+import { IDetailsMovie, RouteParams } from './interfaces';
 
 const DetailsMovies: React.FC = () => {
+  const route = useRoute();
+  const { id } = route.params as RouteParams;
   const [movie, setMovie] = useState<IDetailsMovie>();
 
   useEffect(() => {
     api
       .get<IDetailsMovie>(
-        `movie/531876?api_key=9c8e34c8a854e5aed01144d9bc41211d&language=pt-BR`,
+        `/movie/${id}?api_key=9c8e34c8a854e5aed01144d9bc41211d&language=pt-BR`,
       )
       .then((response) => {
         setMovie(response.data);
       });
-  }, []);
+  }, [id]);
+
   return (
     <Container>
       <ImageBackdrop

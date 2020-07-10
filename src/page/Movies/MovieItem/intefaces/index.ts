@@ -1,5 +1,6 @@
 export interface Props {
   id: number;
+  handle(id: number, title: string): void;
 }
 
 export interface IMovies {

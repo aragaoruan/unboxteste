@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import api from '~/services/api';
 
 import {
@@ -14,7 +15,15 @@ import {
 import { ITrending, IResponseTrending } from './intefaces';
 
 const Trending: React.FC = () => {
+  const { navigate } = useNavigation();
   const [trending, setTrending] = useState<ITrending[]>([]);
+
+  const handleDetails = useCallback(
+    (id: number, title: string) => {
+      navigate('DetailsMovie', { id, title });
+    },
+    [navigate],
+  );
 
   useEffect(() => {
     api
@@ -30,7 +39,7 @@ const Trending: React.FC = () => {
       {trending.map((movie) => (
         <Item
           key={movie?.id}
-          // onPress={() => handleDetails({ id: el?.id, title: el?.title })}
+          onPress={() => handleDetails(movie?.id, movie?.title)}
         >
           <Left>
             <Poster

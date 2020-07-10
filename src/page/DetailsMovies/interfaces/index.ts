@@ -11,6 +11,9 @@ export interface IDetailsMovie {
   spoken_languages: ISpokenLanguages[];
 }
 
+export interface RouteParams {
+  id: number;
+}
 interface ISpokenLanguages {
   iso_639_1: string;
   name: string;
