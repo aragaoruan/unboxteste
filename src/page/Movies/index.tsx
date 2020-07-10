@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from '~/services/api';
 
 import MovieItem from './MovieItem';
-import { Container, GenreLabel } from './styles';
+import { Container, View, GenreLabel } from './styles';
 
 import { Igenre, ResponseGenre } from './intefaces';
 
@@ -22,10 +22,10 @@ const HomeMovies: React.FC = () => {
   return (
     <Container>
       {genres.map((genre) => (
-        <>
-          <GenreLabel key={genre.id}>{genre.name}</GenreLabel>
+        <View key={genre.id}>
+          <GenreLabel>{genre.name}</GenreLabel>
           <MovieItem id={genre.id} />
-        </>
+        </View>
       ))}
     </Container>
   );

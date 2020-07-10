@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Movies from '~/page/Movies';
+import Movies from '~/page/DetailsMovies';
 // import Trending from '~/page/Trending';
 
 const App: React.FC = () => {
