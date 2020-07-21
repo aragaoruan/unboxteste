@@ -19,9 +19,7 @@ const SeriesItem: React.FC<Props> = ({ id, handle }) => {
   useEffect(() => {
     setLoading(true);
     api
-      .get<ResponseMovies>(
-        `discover/tv?with_genres=${id}&api_key=dcabe3d98146057d837088eb8533a2cb&language=pt-BR`,
-      )
+      .get<ResponseMovies>(`discover/tv?with_genres=${id}`)
       .then((response) => {
         setMovies(response.data.results);
         setLoading(false);

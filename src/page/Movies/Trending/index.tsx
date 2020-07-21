@@ -29,14 +29,10 @@ const Trending: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    api
-      .get<IResponseTrending>(
-        'trending/movie/week?api_key=9c8e34c8a854e5aed01144d9bc41211d&language=pt-BR',
-      )
-      .then((response) => {
-        setTrending(response.data.results);
-        setLoading(false);
-      });
+    api.get<IResponseTrending>('trending/movie/week').then((response) => {
+      setTrending(response.data.results);
+      setLoading(false);
+    });
   }, []);
 
   if (loading) {

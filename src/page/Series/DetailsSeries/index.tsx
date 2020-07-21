@@ -37,14 +37,10 @@ const DetailsSeries: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    api
-      .get<IDetailsMovie>(
-        `/tv/${id}?api_key=9c8e34c8a854e5aed01144d9bc41211d&language=pt-BR`,
-      )
-      .then((response) => {
-        setMovie(response.data);
-        setLoading(false);
-      });
+    api.get<IDetailsMovie>(`/tv/${id}`).then((response) => {
+      setMovie(response.data);
+      setLoading(false);
+    });
   }, [id]);
 
   if (loading) {

@@ -16,14 +16,10 @@ const Series: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    api
-      .get<ResponseGenre>(
-        'genre/tv/list?api_key=9c8e34c8a854e5aed01144d9bc41211d&language=pt-BR',
-      )
-      .then((response) => {
-        setGenres(response.data.genres);
-        setLoading(false);
-      });
+    api.get<ResponseGenre>('genre/tv/list').then((response) => {
+      setGenres(response.data.genres);
+      setLoading(false);
+    });
   }, []);
 
   const handleDetails = useCallback(

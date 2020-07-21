@@ -37,7 +37,7 @@ const SearchMovie: React.FC = () => {
     setLoading(true);
     api
       .get<IResponseSearch>(
-        `search/movie?query=${search}&include_adult=false&page=1&language=pt-BR&api_key=9c8e34c8a854e5aed01144d9bc41211d`,
+        `search/movie?query=${search}&include_adult=false&page=1`,
       )
       .then((response) => {
         setMovies(response.data.results);
